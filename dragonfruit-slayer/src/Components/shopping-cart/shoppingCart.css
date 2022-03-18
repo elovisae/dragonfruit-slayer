@@ -1,3 +1,45 @@
-body{
-    background-color: pink;
+*{
+    box-sizing: border-box;
+}
+h1{
+    font-size: 40px;
+}
+h2{
+    font-size: 35px;
+}
+p{
+    font-size: 18px;
+}
+#wrapper{
+    text-align: center;
+    margin-top: 0;
+    font-family:Georgia, 'Times New Roman', Times, serif ;
+}
+.nav{
+    background-color: rgb(253, 226, 237);
+    margin-top:0;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: baseline;
+}
+
+.cart{
+    display:flex;
+    justify-content: center;
+    column-gap:100px;
+    height:600px;
+}
+.cart section{
+    width:500px;
+    text-align: left;
+}
+.cart section div{
+    padding:20px;
+    border:1px solid gray;
+}
+footer{
+    background-color: rgb(255, 214, 231);
+    display:flex;
+    justify-content:space-around;
+    padding: 40px;
 }
