@@ -5,8 +5,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/shopping-cart" element={ShoppingCart} />
         
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
       </Routes>
     </Router>
   );
