@@ -3,6 +3,7 @@ import './shoppingCart.css'
 import '../../general/main.css'
 import { useNavigate, Link } from "react-router-dom";
 import Nav from '../../general/Nav';
+import Footer from '../../general/Footer';
 
 const ShoppingCart = () => {
   return (
@@ -24,11 +25,7 @@ const ShoppingCart = () => {
                  </div>
              </section>
          </article>
-         <footer>
-            <div>Contact us</div>
-            <div>Contact us</div>
-            <div>Contact us</div>
-         </footer>
+         <Footer />
      </>
   )
 }
