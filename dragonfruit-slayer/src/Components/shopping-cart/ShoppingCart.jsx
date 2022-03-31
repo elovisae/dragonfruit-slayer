@@ -1,11 +1,11 @@
 import React from 'react'
 import './shoppingCart.css'
-import '../../general/main.css'
-import { useNavigate, Link } from "react-router-dom";
-import Nav from '../../general/Nav';
-import Footer from '../../general/Footer';
+import '../general/main.css'
+import Nav from '../general/Nav';
+import Footer from '../general/Footer';
+import Items from '../items/Items';
 
-const ShoppingCart = () => {
+const ShoppingCart = (props) => {
   return (
      <>
         <Nav/>
@@ -14,7 +14,6 @@ const ShoppingCart = () => {
              <section>
                 <h3>Din varukorg:</h3>
                 <div>
-                  items items items
                 </div>
              </section>
              <section>

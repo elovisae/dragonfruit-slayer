@@ -6,6 +6,10 @@ const itemSchema = new Schema({
         type: String,
         required: true
     },
+    producer:{
+        type: String,
+        required:true
+    },
     bio: { 
         type: String,
         required: true
@@ -13,6 +17,10 @@ const itemSchema = new Schema({
     prize: {
         type: String,
         required: true
+    },
+    size: {
+        type: String,
+        required:true
     },
     img_link: {
         type: String,

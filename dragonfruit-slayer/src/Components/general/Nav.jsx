@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './main.css'
-import cart from '../img/shopping-bag.png'
-import user from '../img/user.png'
+import cart from '../../img/shopping-bag.png'
+import user from '../../img/user.png'
 const Nav = () => {
     const navigate = useNavigate()
   return (
