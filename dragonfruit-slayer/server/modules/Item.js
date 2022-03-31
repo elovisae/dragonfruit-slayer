@@ -22,7 +22,7 @@ const itemSchema = new Schema({
         type: String,
         required:true
     },
-    img_link: {
+    image: {
         type: String,
         required: true
     },
