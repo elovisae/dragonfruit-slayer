@@ -3,6 +3,8 @@ import ShoppingCart from './Components/shopping-cart/ShoppingCart';
 import ErrorPage from './Components/404';
 import { useEffect, useState } from 'react';
 import Shop from './Components/shop/Shop';
+import Register from './Components/register/Register'
+import Login from './Components/login/Login';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -21,7 +23,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Shop items={items}/>} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="*" element={<ErrorPage />} />
