@@ -1,28 +1,37 @@
 
 .cart{
-    display:flex;
-    justify-content: center;
+    margin: 0 auto;
+    width:80%;
+    display:grid;
+    grid-template-columns: 4fr 2fr;
     column-gap:100px;
-    height:600px;
+    min-height:400px;
 }
 .cart section{
-    width:500px;
+    /* width:500px; */
     text-align: left;
-}
+    padding:20px;
 
+}
+.cart .pay-section{
+    border-left: 1px solid gray;
+}
 .cart-item{
+    width:100%;
+    padding: 20px;
     display:flex;
     justify-content: space-between;
     border:1px solid pink;
 }
 .cart-item-img{
-    width:200px;
+    width:150px;
 }
 span * {
     display: inline-block;
     margin-right: 8px;
 }
 .black-btn{
+    height:fit-content;
     background-color: black;
     color: white;
     border-radius: 10px;

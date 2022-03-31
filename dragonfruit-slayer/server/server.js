@@ -51,7 +51,7 @@ app.patch('/items/:itemId', async (req, res) => {
             bio: req.body.bio,
             prize: req.body.prize,
             size:req.body.size,
-            img_link: req.body.img_link,
+            image: req.body.image,
             tags: req.body.tags,
             quantity: req.body.quantity,
             isInCart: req.body.isInCart

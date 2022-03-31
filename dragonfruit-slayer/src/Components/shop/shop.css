@@ -1,7 +1,9 @@
 .shop-all-wrapper{
+    width:80%;
+    margin: 0 auto;
     display:grid;
     grid-template-columns: repeat(3, 1fr);
-    gap:40px;
+    gap:70px;
 }
 .card{
     padding: 20px;

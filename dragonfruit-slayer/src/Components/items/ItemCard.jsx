@@ -1,5 +1,4 @@
 import React from 'react'
-import Photo from '../../img/Photo'
 import { useState } from 'react';
 
 const ItemCard = (props) => {
@@ -26,12 +25,16 @@ const ItemCard = (props) => {
   
   return (
     <div className='card'>
-        <Photo img={item.img_link} class="item-img"/>
+        <img src={`IMG/items/${item.image}`} alt={`product image of ${item.productName}`} className='item-img'/>
         <div>
           <div className="item-description">
               <h3>{item.productName}</h3>
               <p className="italic">{item.producer}</p>
-              <p className="bold">{item.size} ml</p>
+              <span>
+                <p>{item.size} ml   </p>
+                <p className="bold">{item.prize} SEK</p>
+              </span>
+              
           </div>
           <div className='add-to-cart'>
             <select name="quantity" onChange={(e) => {setQuantity(e.target.value)}}>

@@ -9,6 +9,7 @@ const CartItems = (props) => {
         <CartItem 
         item={item}
         key={item._id}
+        function={props.function}
         
         />
     )}
