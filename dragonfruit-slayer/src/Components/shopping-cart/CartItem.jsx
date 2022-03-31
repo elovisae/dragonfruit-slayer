@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 
 const CartItem = (props) => {
-  console.log(props.function)
+  console.log(props.fetchFunction)
   const item = props.item;
   const [quantity, setQuantity] = useState(item.quantity);
   item.quantity = quantity;
   let number = parseInt(item.quantity)
   let prize   = parseInt(item.prize)
   let totalPrize = number*prize;
+  props.getSum(totalPrize)
 
   const handleClick = async () => {
     item.quantity = '';
@@ -26,9 +27,8 @@ const CartItem = (props) => {
     })  
     let data = await response.json()
     console.log(data.message)
-    props.function()
+    props.fetchFunction()
   }
-
   return (
     <div className='cart-item'>
       <img src={`IMG/items/${item.image}`} alt={`The product picture for ${item.productName}`} className='cart-item-img'/>

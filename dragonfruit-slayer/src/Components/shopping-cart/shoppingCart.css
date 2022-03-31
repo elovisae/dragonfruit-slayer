@@ -14,7 +14,19 @@
 
 }
 .cart .pay-section{
-    border-left: 1px solid gray;
+    margin-top: 100px;
+    height: fit-content;
+    background-color: rgb(255, 242, 245);
+}
+.cart .pay-section div{
+    display:flex;
+    justify-content: space-between;    
+}
+.cart .pay-section div p{
+   line-height: 0;    
+}
+.total-sum-div{
+    margin: 10px 0;
 }
 .cart-item{
     width:100%;

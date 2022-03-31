@@ -8,7 +8,9 @@ import CartItems from './CartItems';
 
 const ShoppingCart = () => {
    const [items, setItems] = useState([]);
+   const [totalSum, setTotalSum] = useState(0)
    useEffect(() => {fetchAllItems()}, [])
+   
 
   async function fetchAllItems () {
     try{
@@ -22,12 +24,14 @@ const ShoppingCart = () => {
          }
       })
       setItems(filteredItems)
+      setTotalSum(0)
       
    }catch(error){
       console.log(error)
       }
    }
    function handleClick (){
+      console.log(totalSum)
       items.map(item => {
          item.quantity = "";
          item.isInCart = false;
@@ -50,6 +54,10 @@ const ShoppingCart = () => {
          console.log(data.message)
          fetchAllItems()
    }
+   const getTotalSum = (sum) => {
+      setTotalSum(sum)
+   }
+   
    console.log(items.length)
    if(items.length === 0){
       return(
@@ -65,8 +73,19 @@ const ShoppingCart = () => {
                      </div>
                   </section>
                   <section className='pay-section'>
-                        <h3>Till betalning:</h3>
-                        <button onClick={handleClick} className='black-btn'>Betala</button>
+                  <div>
+                        <p>Ordersumma:</p>
+                        <p>{` ${totalSum} SEK`}</p>
+                     </div>
+                     <div>
+                        <p>Leverans</p>
+                        <p>39.90 SEK</p>
+                     </div>
+                     <div className='total-sum-div'>
+                        <p className='bold'>Totalsumma</p>
+                        <p className='bold'>{Math.round(totalSum + 39.90)+ ' SEK'}</p>
+                     </div>
+                     <button onClick={handleClick} className='black-btn'>Fortsätt till kassan</button>
                   </section>
                </article>
              </main>
@@ -83,15 +102,23 @@ const ShoppingCart = () => {
                   <section>
                      <h3>Din varukorg:</h3>
                      <div>
-                        <CartItems function={fetchAllItems} items={items}/>
+                        <CartItems getTotalSum={getTotalSum} fetchFunction={fetchAllItems} items={items}/>
                      </div>
                   </section>
                   <section className='pay-section'>
-                        <h3>Till betalning:</h3>
-                        <form action="" className='pay-section'>
-
-                        </form>
-                        <button onClick={handleClick} className='black-btn'>Betala</button>
+                     <div>
+                        <p>Ordersumma:</p>
+                        <p>{` ${totalSum} SEK`}</p>
+                     </div>
+                     <div>
+                        <p>Leverans</p>
+                        <p>39.90 SEK</p>
+                     </div>
+                     <div className='total-sum-div'>
+                        <p className='bold'>Totalsumma</p>
+                        <p className='bold'>{Math.round(totalSum + 39.90)+ ' SEK'}</p>
+                     </div>
+                     <button onClick={handleClick} className='black-btn'>Fortsätt till kassan</button>
                   </section>
                </article>
              </main>
