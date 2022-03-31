@@ -78,34 +78,34 @@ app.delete('/items/:itemId', async (req, res) => {
 // ************** HTTP methods for USERS *********************
 
 //Create new user
-app.post('/users', async (req, res) => {
-    const user = new User(req.body);
-    //Here we will need to add some validation
-    user.save()
-        .then(result => {
-            res.send({message: "You are now registered! :)"})
-            console.log('User added')
-        })
-        .catch(error => console.log(error))
+app.post('/users/register', async(req,res)=> {
+    const newUser = new User({
+        name: req.body.name,
+         email: req.body.email,
+         password: req.body.password
+    })
+
+    try {
+        const savedUser = await newUser.save()
+        res.status(201).json(savedUser)
+    } catch{
+        res.status(500).json(err)
+    }
 })
 
 //User login request
-app.post('/users/login', async (req, res) => {
-    let user = new User(req.body);
-    User.find()
-        .then(result => {
-            const allUsers = result;
-            allUsers.map(dbUser => {
-                if (user.mail === dbUser.mail){
-                    if (user.password === dbUser.password){
-                        res.send({message: "Logging in", loggedIn: true})
-                    }else{
-                        res.send({message: "Wrong password, try again", loggedIn: false})
-                    }
-                }
-            })
-        })
-        .catch(error => console.log(error))
+app.post('/users/login', async (req,res) => {
+    
+    const user = await User.findOne({
+        email: req.body.email,
+        password: req.body.password,
+    })
+    if(user) {
+        return res.json({ status: 'ok', user: true})
+    } else {
+        return res.json({ status: 'error', user: false})
+    }
+     
 })
 
 
