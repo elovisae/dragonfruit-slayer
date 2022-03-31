@@ -4,7 +4,6 @@ const bodyParser    = require('body-parser')
 const cors          = require('cors')
 const Item          = require('./modules/Item')
 const User          = require('./modules/User')
-const { getMaxListeners } = require('./modules/Item')
 
 const app           = express()
 app.use(cors())
