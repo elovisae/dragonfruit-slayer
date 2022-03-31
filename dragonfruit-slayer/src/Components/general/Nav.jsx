@@ -5,6 +5,7 @@ import cart from '../../img/shopping-bag.png'
 import user from '../../img/user.png'
 const Nav = () => {
     const navigate = useNavigate()
+    
   return (
     <header>
             <nav>

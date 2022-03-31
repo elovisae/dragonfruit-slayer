@@ -4,24 +4,40 @@ import { useState } from 'react';
 const ItemCard = (props) => {
   const item = props.item;
   const [quantity, setQuantity] = useState('1')
+  const [validation, setValidation] = useState('hide')
+  const [message, setMessage]       = useState('')
+
+  const itemAdded = (message) => {
+    setMessage(message)
+    setValidation('')
+    setTimeout (() => {
+      setMessage('')
+      setValidation('hide')
+    }, 1000)
+  }
 
   async function handleClick (){
     item.quantity = quantity;
     item.isInCart = true;
-    console.log(item)
-    let url = 'http://localhost:5000/items/' + item._id;
-    console.log(url)
-
-    let response = await fetch(url, {
-      method: 'PATCH',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(item)
-    })  
-    let data = await response.json()
-    console.log(data.message)
+    try {
+      let url = 'http://localhost:5000/items/' + item._id;
+      let response = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item)
+      })  
+      let data = await response.json()
+      itemAdded(`${item.quantity} ${item.productName} added to cart`);
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
+
+  
+  
   
   return (
     <div className='card'>
@@ -45,6 +61,9 @@ const ItemCard = (props) => {
            </select>
             <button onClick={handleClick} className='buy-btn'>Köp</button>
           </div>
+        </div>
+        <div className='added-item-validation'>
+          <p className={validation}>{message}</p>
         </div>
 
     </div>

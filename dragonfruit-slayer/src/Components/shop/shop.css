@@ -42,3 +42,13 @@
 .add-to-cart *:hover{
     background-color: rgb(46, 46, 46);
 }
+.added-item-validation{
+    height:20px;
+}
+.added-item-validation p{
+    margin: auto;
+    color: #C9184A;
+}
+.hide{
+    display: none;
+}

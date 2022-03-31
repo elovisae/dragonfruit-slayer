@@ -31,7 +31,10 @@ const CartItem = (props) => {
   }
   return (
     <div className='cart-item'>
-      <img src={`IMG/items/${item.image}`} alt={`The product picture for ${item.productName}`} className='cart-item-img'/>
+      <div className="photo">
+        <img src={`IMG/items/${item.image}`} alt={`The product picture for ${item.productName}`} className='cart-item-img'/>
+
+      </div>
         <div>
             <span><h3>{item.productName}</h3><p className="italic">{item.producer}</p></span>
             
