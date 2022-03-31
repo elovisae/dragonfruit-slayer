@@ -9,7 +9,7 @@ const Items = (props) => {
             <ItemCard 
             item={item}
             key={item._id}
-            
+            validation={props.validation}
             />
         )}
     </>

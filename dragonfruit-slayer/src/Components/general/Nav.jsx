@@ -6,6 +6,7 @@ import user from '../../img/user.png'
 import signup from '../../img/signup.webp'
 const Nav = () => {
     const navigate = useNavigate()
+    
   return (
     <header>
             <nav>

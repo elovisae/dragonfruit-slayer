@@ -1,17 +1,40 @@
 import React, { useEffect } from 'react'
-import Photo from '../../img/Photo'
 import { useState } from 'react';
 
 const CartItem = (props) => {
+  console.log(props.fetchFunction)
   const item = props.item;
   const [quantity, setQuantity] = useState(item.quantity);
   item.quantity = quantity;
   let number = parseInt(item.quantity)
   let prize   = parseInt(item.prize)
   let totalPrize = number*prize;
+  props.getSum(totalPrize)
+
+  const handleClick = async () => {
+    item.quantity = '';
+    item.isInCart = false;
+
+    let url = 'http://localhost:5000/items/' + item._id;
+    console.log(url)
+      
+    let response = await fetch(url, {
+    method: 'PATCH',
+    headers: {
+          'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(item)
+    })  
+    let data = await response.json()
+    console.log(data.message)
+    props.fetchFunction()
+  }
   return (
     <div className='cart-item'>
-        <Photo img={item.img_link} class="cart-item-img"/>
+      <div className="photo">
+        <img src={`IMG/items/${item.image}`} alt={`The product picture for ${item.productName}`} className='cart-item-img'/>
+
+      </div>
         <div>
             <span><h3>{item.productName}</h3><p className="italic">{item.producer}</p></span>
             
@@ -22,6 +45,7 @@ const CartItem = (props) => {
               <p className='bold'>Total prize: {totalPrize}</p>
             </div>
         </div>
+        <button onClick={() => handleClick()} className='black-btn'>Ta bort</button>
     </div>
   )
 }
