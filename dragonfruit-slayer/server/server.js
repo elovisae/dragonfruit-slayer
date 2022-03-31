@@ -47,15 +47,19 @@ app.patch('/items/:itemId', async (req, res) => {
     Item.updateOne({_id: req.params.itemId},
         {$set: {
             productName: req.body.productName,
+            producer:req.body.producer,
             bio: req.body.bio,
             prize: req.body.prize,
+            size:req.body.size,
             img_link: req.body.img_link,
-            tags: req.body.tags
+            tags: req.body.tags,
+            quantity: req.body.quantity,
+            isInCart: req.body.isInCart
             }
         })
         .then(data => {
             console.log('Item patced')
-            res.send(data)
+            res.json({message: 'item patched'})
         })
         .catch(error => console.log(error))
 })

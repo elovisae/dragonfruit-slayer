@@ -10,6 +10,10 @@ body{
     text-align: center;
     font-family: "Roboto";
 }
+main{
+    min-height: 500px;
+    padding: 40px;
+}
 
 h1{
     font-size: 40px;
@@ -18,7 +22,7 @@ h1{
 h2{
     font-size: 35px;
 }
-p{
+p, input, button, select{
     font-size: 18px;
 }
 nav{
@@ -36,12 +40,18 @@ header h1{
     letter-spacing: 5px;
 }
 footer{
+    margin-top:20px;
     background-color: var(--main-bg-color);
     display:flex;
     justify-content:space-around;
     padding: 40px;
 }
-
+.italic{
+    font-style: italic;
+}
+.bold{
+    font-weight: bolder;
+}
 .title{
     font-family:'Raleway', Arial, Helvetica, sans-serif;
 

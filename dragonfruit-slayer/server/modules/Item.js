@@ -29,6 +29,14 @@ const itemSchema = new Schema({
     tags: { //samla dofter etc för att kunna filtrera?
         type: Array,
         required: false
+    },
+    quantity: {
+        type: String,
+        required: false
+    },
+    isInCart: {
+        type: Boolean,
+        required: false
     }
 });
 
