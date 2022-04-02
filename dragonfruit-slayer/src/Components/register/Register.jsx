@@ -3,8 +3,13 @@ import {useState} from 'react'
 import '../general/main.css'
 import Nav from '../general/Nav';
 import Footer from '../general/Footer';
+import {useNavigate } from 'react-router-dom'
+
 
 const Register = () => {
+
+    let navigate = useNavigate()
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -25,6 +30,11 @@ const Register = () => {
 
      const data = await response.json()
      console.log(data)
+     if(data) {
+        alert('You succesfully registered, please login')
+        navigate("/login")
+       
+     }
     }
 
     return (
