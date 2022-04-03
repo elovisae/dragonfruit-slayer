@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ItemCard = (props) => {
   const item = props.item;
@@ -36,7 +37,17 @@ const ItemCard = (props) => {
     
   }
 
-  
+  async function ProductClick (){
+    try {
+      let url = 'http://localhost:5000/items/' + item._id;
+      let response = await fetch(url)  
+      let data = await response.json()
+console.log(data);
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
   
   
   return (
@@ -61,11 +72,12 @@ const ItemCard = (props) => {
            </select>
             <button onClick={handleClick} className='buy-btn'>Köp</button>
           </div>
-        </div>
-        <div className='added-item-validation'>
-          <p className={validation}>{message}</p>
-        </div>
 
+          <div className='add-to-cart'>
+                    <Link to="/produkt"><button onClick={ProductClick} className='buy-btn'>Mer info</button></Link>
+          </div>
+          
+        </div>
     </div>
   )
 }
