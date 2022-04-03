@@ -29,9 +29,10 @@ const Login = () => {
 
      const data = await response.json()
      console.log(data)
-     if(typeof data === 'object' && data.user === true) {
-        
-        navigate("/")
+     if(data.user) {
+        localStorage.setItem('token', data.user)
+        alert('Login successful')
+        navigate("/welcome")
        
      } else {
          alert('User not found. Please Register.')
