@@ -3,8 +3,13 @@ import {useState} from 'react'
 import '../general/main.css'
 import Nav from '../general/Nav';
 import Footer from '../general/Footer';
+import {useNavigate } from 'react-router-dom'
+
 
 const Login = () => {
+
+    let navigate = useNavigate()
+
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -24,6 +29,14 @@ const Login = () => {
 
      const data = await response.json()
      console.log(data)
+     if(typeof data === 'object' && data.user === true) {
+        
+        navigate("/")
+       
+     } else {
+         alert('User not found. Please Register.')
+         navigate("/register")
+     }
     }
 
     return (
