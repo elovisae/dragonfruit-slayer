@@ -3,6 +3,7 @@ import ShoppingCart from './Components/shopping-cart/ShoppingCart';
 import ErrorPage from './Components/404';
 import { useEffect, useState } from 'react';
 import Shop from './Components/shop/Shop';
+import Produkt from './Components/produkt/Produkt';
 import Register from './Components/register/Register'
 import Login from './Components/login/Login';
 import WelcomePage from './Components/welcome-page/WelcomePage';
@@ -30,7 +31,7 @@ function App() {
         <Route path="/" element={<Shop items={items}/>} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="*" element={<ErrorPage />} />
-        
+        <Route path="/produkt" element={<Produkt/>} />
       </Routes>
     </Router>
   );
