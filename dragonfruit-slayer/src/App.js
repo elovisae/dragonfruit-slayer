@@ -7,6 +7,7 @@ import Produkt from './Components/produkt/Produkt';
 import Register from './Components/register/Register'
 import Login from './Components/login/Login';
 
+
 function App() {
   const [items, setItems] = useState([]);
   useEffect(() => {fetchAllItems()}, [])
