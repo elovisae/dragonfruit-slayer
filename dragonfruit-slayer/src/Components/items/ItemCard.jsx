@@ -1,12 +1,16 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+
 
 const ItemCard = (props) => {
   const item = props.item;
   const [quantity, setQuantity] = useState('1')
   const [validation, setValidation] = useState('hide')
   const [message, setMessage]       = useState('')
+  const navigate = useNavigate('')
+
 
   const itemAdded = (message) => {
     setMessage(message)
@@ -37,19 +41,6 @@ const ItemCard = (props) => {
     
   }
 
-  async function ProductClick (){
-    try {
-      let url = 'http://localhost:5000/items/' + item._id;
-      let response = await fetch(url)  
-      let data = await response.json()
-console.log(data);
-    } catch (error) {
-      console.log(error)
-    }
-    
-  }
-  
-  
   return (
     <div className='card'>
         <img src={`IMG/items/${item.image}`} alt={`product image of ${item.productName}`} className='item-img'/>
@@ -74,9 +65,11 @@ console.log(data);
           </div>
 
           <div className='add-to-cart'>
-                    <Link to="/produkt"><button onClick={ProductClick} className='buy-btn'>Mer info</button></Link>
+                    <button onClick={() => navigate('/produkt?id=' + item._id)} className='buy-btn'>Mer info</button>
           </div>
-          
+          <div className='added-item-validation'>
+          <p className={validation}>{message}</p>
+        </div>
         </div>
     </div>
   )
