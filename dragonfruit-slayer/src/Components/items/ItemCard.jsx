@@ -1,5 +1,5 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import { useState } from 'react';
 
 
@@ -53,7 +53,7 @@ const ItemCard = (props) => {
 
         <div id="btn-wrapper">
           <div className='button'>
-              <Link to="/produkt"><button onClick={ProductClick} className='btn'>Mer info</button></Link>
+              <button onClick={() => navigate('/produkt?id=' + item._id)} className='btn'>Mer info</button>
           </div>
           <div className='button'>
             <select name="quantity" onChange={(e) => {setQuantity(e.target.value)}}>
