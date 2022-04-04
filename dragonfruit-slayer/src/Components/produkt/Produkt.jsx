@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Nav from '../general/Nav'
 import Footer from '../general/Footer'
-import '../shop/shop.css'
 
 
 const Produkt = () => {
