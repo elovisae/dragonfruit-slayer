@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { decodeToken } from 'react-jwt';
 
 const ItemCard = (props) => {
   const item = props.item;
@@ -17,6 +18,31 @@ const ItemCard = (props) => {
     }, 1000)
   }
 
+  const updateUser = async (item) => {  
+    const token = localStorage.getItem('token')
+    const user = decodeToken(token)    
+
+    if (!user) {
+      console.log('cannot update user items')
+      return
+    }
+
+    let url = 'http://localhost:5000/users/item';
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({userEmail:user.email,...item})
+        // + user id
+      })
+      let data = await res.json()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   async function handleClick (){
     item.quantity = quantity;
     item.isInCart = true;
@@ -31,6 +57,7 @@ const ItemCard = (props) => {
       })  
       let data = await response.json()
       itemAdded(`${item.quantity} ${item.productName} added to cart`);
+      updateUser(item)
     } catch (error) {
       console.log(error)
     }

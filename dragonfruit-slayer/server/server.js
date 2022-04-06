@@ -65,6 +65,27 @@ app.patch('/items/:itemId', async (req, res) => {
         .catch(error => console.log(error))
 })
 
+app.post('/users/item', async (req,res) => {
+    // User.updateOne({email: req.body.userEmail},
+    //     {$set: {
+    //         productName: req.body.productName,
+    //         producer:req.body.producer,
+    //         bio: req.body.bio,
+    //         prize: req.body.prize,
+    //         size:req.body.size,
+    //         image: req.body.image,
+    //         tags: req.body.tags,
+    //         quantity: req.body.quantity,
+    //         isInCart: req.body.isInCart
+    //         }
+    //     })
+    //     .then(data => {
+    //         console.log('User item updated')
+    //         res.json({message: 'user item updated'})
+    //     })
+    //     .catch(error => console.log(error))
+})
+
 //Delete specific item
     //This will not be used on the website, but we might use it if we want to delete an item
 app.delete('/items/:itemId', async (req, res) => {
