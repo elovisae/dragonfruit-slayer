@@ -4,6 +4,7 @@ const bodyParser    = require('body-parser')
 const cors          = require('cors')
 const Item          = require('./modules/Item')
 const User          = require('./modules/User')
+const jwt           = require('jsonwebtoken')
 
 const app           = express()
 app.use(cors())
@@ -64,6 +65,27 @@ app.patch('/items/:itemId', async (req, res) => {
         .catch(error => console.log(error))
 })
 
+app.post('/users/item', async (req,res) => {
+    // User.updateOne({email: req.body.userEmail},
+    //     {$set: {
+    //         productName: req.body.productName,
+    //         producer:req.body.producer,
+    //         bio: req.body.bio,
+    //         prize: req.body.prize,
+    //         size:req.body.size,
+    //         image: req.body.image,
+    //         tags: req.body.tags,
+    //         quantity: req.body.quantity,
+    //         isInCart: req.body.isInCart
+    //         }
+    //     })
+    //     .then(data => {
+    //         console.log('User item updated')
+    //         res.json({message: 'user item updated'})
+    //     })
+    //     .catch(error => console.log(error))
+})
+
 //Delete specific item
     //This will not be used on the website, but we might use it if we want to delete an item
 app.delete('/items/:itemId', async (req, res) => {
@@ -101,9 +123,55 @@ app.post('/users/login', async (req,res) => {
         password: req.body.password,
     })
     if(user) {
-        return res.json({ status: 'ok', user: true})
+
+     const token = jwt.sign(
+         {
+          name: user.name,
+          email: user.email,
+         }, 'secret123')
+
+        return res.json({ status: 'ok', user: token})
     } else {
         return res.json({ status: 'error', user: false})
+    }
+     
+})
+app.get('/users/purchases', async (req,res) => {
+     const token = req.headers['x-access-token']
+
+     //checking if token is correct or not)
+    try {
+        const decoded = jwt.verify(token, 'secret123')
+        const email = decoded.email
+        const user = await User.findOne({email:email})
+
+        return res.json({ status: 'ok', purchases: user.purchases})
+    } catch(error) {
+        console.log(error)
+        res.json({status: 'error', error: 'invalid token'})
+    }
+     
+})
+
+//Add purchase(s) to user
+
+app.post('/users/purchases', async (req,res) => {
+     const token = req.headers['x-access-token']
+
+    
+    try {
+        const decoded = jwt.verify(token, 'secret123')
+        const email = decoded.email
+
+        await User.updateOne(
+            {email:email}, 
+            {$set: { purchases:req.body.purchases}}
+        )
+
+        return { status: 'ok'}
+    } catch(error) {
+        console.log(error)
+        res.json({status: 'error', error: 'invalid token'})
     }
      
 })
@@ -111,13 +179,13 @@ app.post('/users/login', async (req,res) => {
 
 // Get list of all users
     // This will not be used on the website, but is good for us to have to check all existing users (via ex insomnia)
-app.get('/users', async (req, res) => {
+/*app.get('/users', async (req, res) => {
     User.find()
         .then(data => {
             res.send(data)
         })
         .catch(error => console.log(error))
-})
+})*/
 
 // Delete user (if we need to delete some of our tests)
 app.delete('/users/:userId', async (req, res) => {

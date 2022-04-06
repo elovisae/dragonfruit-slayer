@@ -29,8 +29,8 @@ const Register = () => {
      })
 
      const data = await response.json()
-     console.log(data)
-     if(data) {
+     console.log(data,response)
+     if(response.ok) {
         alert('You succesfully registered, please login')
         navigate("/login")
        

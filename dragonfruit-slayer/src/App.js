@@ -6,6 +6,7 @@ import Shop from './Components/shop/Shop';
 import Produkt from './Components/produkt/Produkt';
 import Register from './Components/register/Register'
 import Login from './Components/login/Login';
+import WelcomePage from './Components/welcome-page/WelcomePage';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/" element={<Shop items={items}/>} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="*" element={<ErrorPage />} />
