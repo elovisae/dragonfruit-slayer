@@ -160,6 +160,8 @@ app.post('/users/purchases', async (req,res) => {
 
     
     try {
+        console.log(req.body)
+        console.log(req.headers)
         const decoded = jwt.verify(token, 'secret123')
         const email = decoded.email
 

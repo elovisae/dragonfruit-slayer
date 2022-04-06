@@ -31,6 +31,23 @@ const ShoppingCart = () => {
       }
    }
    function handleClick (){
+      console.log(items)
+      fetch('http://localhost:5000/users/purchases', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': localStorage.getItem('token')
+         }, body: JSON.stringify({purchases: items}),
+         
+      })
+      .then(response => response.json())
+      .then(data => {
+         console.log('Success:', data);
+      })
+      .catch((error) => {
+         console.error('Error:', error);
+      });
+      
       console.log(totalSum)
       items.map(item => {
          item.quantity = "";
