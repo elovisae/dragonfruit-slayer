@@ -4,6 +4,7 @@ import './main.css'
 import cart from '../../img/shopping-bag.png'
 import user from '../../img/user.png'
 import signup from '../../img/signup.webp'
+import history from '../../img/order-history.jpg'
 const Nav = () => {
     const navigate = useNavigate()
     
@@ -13,9 +14,11 @@ const Nav = () => {
                 <p className="link" onClick={() => {navigate(-1)}}> &lt; BACK</p>
                 <h1><Link to="/" className='link title'>SLAYER</Link></h1>
                 <div>
+                <Link to="/welcome"><img className="order-history" src={history} alt="" /></Link>
                     <Link to="/register"><img className="icon signup-icon" src={signup} alt="" /></Link>
                     <Link to="/login"><img className="icon user-icon" src={user} alt="" /></Link>
                     <Link to="/cart"><img className="icon" src={cart} alt="" /></Link>
+                    
                 </div>
             </nav>
         </header>

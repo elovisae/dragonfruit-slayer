@@ -1,8 +1,11 @@
 import React from "react";
 import { decodeToken } from "react-jwt";
-import {useNavigate } from 'react-router-dom'
+import {useNavigate, Link } from 'react-router-dom'
 import { useEffect } from "react";
 import { useState } from "react";
+import Nav from '../general/Nav'
+import Footer from '../general/Footer'
+import '../general/main.css'
 
 
 
@@ -40,10 +43,19 @@ const WelcomePage = () => {
     }, [])
 
     return (
+        <>
+        <Nav />
        <div>
+       
            <h1>Welcome</h1>
-           <h2>Your previous purchases: {purchases || 'No previous purchases found'}</h2>
+           <h3>Your previous purchases: <br/>
+            {purchases || 'No previous purchases found'}</h3>
+
+            <h3><Link to="/" className='link title'>Continue to SHOP</Link></h3>
+
        </div>
+       <Footer />
+    </>
 )}
 
 export default WelcomePage
