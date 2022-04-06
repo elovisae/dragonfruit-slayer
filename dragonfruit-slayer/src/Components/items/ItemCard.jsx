@@ -1,13 +1,18 @@
 import React from 'react'
+import {useNavigate, Link} from 'react-router-dom';
 import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
+
 
 const ItemCard = (props) => {
   const item = props.item;
   const [quantity, setQuantity] = useState('1')
   const [validation, setValidation] = useState('hide')
   const [message, setMessage]       = useState('')
+  const navigate = useNavigate('')
+
 
   const itemAdded = (message) => {
     setMessage(message)
@@ -64,46 +69,29 @@ const ItemCard = (props) => {
     
   }
 
-  async function ProductClick (){
-    try {
-      let url = 'http://localhost:5000/items/' + item._id;
-      let response = await fetch(url)  
-      let data = await response.json()
-console.log(data);
-    } catch (error) {
-      console.log(error)
-    }
-    
-  }
-  
-  
   return (
     <div className='card'>
         <img src={`IMG/items/${item.image}`} alt={`product image of ${item.productName}`} className='item-img'/>
-        <div>
-          <div className="item-description">
-              <h3>{item.productName}</h3>
-              <p className="italic">{item.producer}</p>
-              <span>
-                <p>{item.size} ml   </p>
-                <p className="bold">{item.prize} SEK</p>
-              </span>
-              
+        <h3>{item.productName}</h3>
+        <p className="italic">{item.producer}</p>
+        <div className='item-info'>
+          <p>{item.size} ml   </p>
+          <p className="bold">{item.prize} SEK</p>
+        </div>
+
+        <div id="btn-wrapper">
+          <div className='button'>
+              <button onClick={() => navigate('/produkt?id=' + item._id)} className='btn'>Mer info</button>
           </div>
-          <div className='add-to-cart'>
+          <div className='button'>
             <select name="quantity" onChange={(e) => {setQuantity(e.target.value)}}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
            </select>
-            <button onClick={handleClick} className='buy-btn'>Köp</button>
+            <button onClick={handleClick} className='btn'>Köp</button>
           </div>
-
-          <div className='add-to-cart'>
-                    <Link to="/produkt"><button onClick={ProductClick} className='buy-btn'>Mer info</button></Link>
-          </div>
-          
         </div>
     </div>
   )

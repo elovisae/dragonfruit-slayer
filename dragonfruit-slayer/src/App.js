@@ -8,6 +8,7 @@ import Register from './Components/register/Register'
 import Login from './Components/login/Login';
 import WelcomePage from './Components/welcome-page/WelcomePage';
 
+
 function App() {
   const [items, setItems] = useState([]);
   useEffect(() => {fetchAllItems()}, [])
