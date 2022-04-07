@@ -29,7 +29,7 @@ async function fetchItem () {
     <main>
      
         <div className='card'>
-        <img src={`IMG/items/${item.image}`} alt={`product image of ${item.productName}`} className='item-img'/>
+        <img src={`IMG/items/${item.image}`} alt={`product image of ${item.productName}`} className='produkt-img'/>
         <div>
           <div className="item-description">
               <h3>{item.productName}</h3>
